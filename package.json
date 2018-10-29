@@ -1,0 +1,10 @@
+{
+  "name": "block-camera",
+  "version": "1.0.0",
+  "description": "a camera for screen-shotting d3js blocks",
+  "main": "index.js",
+  "repository": "git@github.com:bayd3/block-camera.git",
+  "author": "Micah Stubbs <micah.stubbs@gmail.com>",
+  "license": "Apache-2.0",
+  "private": false
+}
