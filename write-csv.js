@@ -14,4 +14,5 @@ module.exports = ({ path, data }) => {
     writer.write(d)
   })
   writer.end()
+  console.log(`wrote ${data.length} rows to ${path}`)
 }

@@ -8,6 +8,7 @@
   "license": "Apache-2.0",
   "private": false,
   "dependencies": {
-    "csv-write-stream": "^2.0.0"
+    "csv-write-stream": "^2.0.0",
+    "node-fetch": "^2.2.0"
   }
 }
