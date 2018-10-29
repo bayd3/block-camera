@@ -10,6 +10,8 @@ module.exports = block => {
   }-preview`
   const ext = 'png'
 
+  // this can be any server running the micahstubbs/screenshot-service project
+  // https://github.com/micahstubbs/screenshot-service
   const screenshotServerUrl = new URL('https://screenshot.micah.fyi/api/')
   const params = new URLSearchParams(screenshotServerUrl.search)
   params.set('url', pageUrl)
