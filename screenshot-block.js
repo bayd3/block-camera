@@ -27,7 +27,7 @@ module.exports = ({ block, type }) => {
     params.set('rheight', 120)
   }
   params.set('filename', filename)
-  params.set('noreply', true)
+  params.set('reply', 'no')
   screenshotServerUrl.search = params
   fetch(screenshotServerUrl).catch(err => console.error(err))
 }

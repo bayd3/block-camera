@@ -1,6 +1,9 @@
 const screenshotBlock = require('./screenshot-block.js')
 
 screenshotBlock({
-  gistId: 1341679,
-  user: 'mbostock'
+  block: {
+    gistId: 1341679,
+    user: 'mbostock'
+  },
+  type: 'thumbnail'
 })
