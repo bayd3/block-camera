@@ -2,12 +2,15 @@ const fetch = require('node-fetch')
 const URL = require('url').URL
 const URLSearchParams = require('url').URLSearchParams
 
-module.exports = block => {
+// block: object of shape { gistId: string or number, user: string }
+// type: string one of ['preview', 'thumbnail']
+module.exports = ({ block, type }) => {
   // construct pageUrl
   const pageUrl = `https://bl.ocks.org/${block.user}/raw/${block.gistId}`
-  const filename = `https-bl-ocks-org-${block.user.toLowerCase()}-raw-${
+
+  let filename = `https-bl-ocks-org-${block.user.toLowerCase()}-raw-${
     block.gistId
-  }-preview`
+  }-${type}`
   const ext = 'png'
 
   // this can be any server running the micahstubbs/screenshot-service project
@@ -17,7 +20,14 @@ module.exports = block => {
   params.set('url', pageUrl)
   params.set('id', '1e9cb2bb-4b64-4152-aaa9-eb0be182e7cc')
   params.set('ext', ext)
+  params.set('vwidth', 960)
+  params.set('vheight', 500)
+  if (type === 'thumbnail') {
+    params.set('rwidth', 230)
+    params.set('rheight', 120)
+  }
   params.set('filename', filename)
+  params.set('noreply', true)
   screenshotServerUrl.search = params
   fetch(screenshotServerUrl).catch(err => console.error(err))
 }
