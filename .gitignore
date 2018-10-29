@@ -3,3 +3,4 @@ node_modules
 
 # big files
 data/files-blocks.json
+data/blocks.json
