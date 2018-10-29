@@ -7,6 +7,7 @@ const URLSearchParams = require('url').URLSearchParams
 module.exports = ({ block, type }) => {
   // construct pageUrl
   const pageUrl = `https://bl.ocks.org/${block.user}/raw/${block.gistId}`
+  console.log(pageUrl)
 
   let filename = `https-bl-ocks-org-${block.user.toLowerCase()}-raw-${
     block.gistId

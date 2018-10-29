@@ -9,6 +9,7 @@
   "private": false,
   "dependencies": {
     "csv-write-stream": "^2.0.0",
+    "d3-dsv": "^1.0.10",
     "node-fetch": "^2.2.0"
   }
 }
