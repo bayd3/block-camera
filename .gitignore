@@ -1,0 +1,5 @@
+# library files
+node_modules
+
+# big files
+data/files-blocks.json
