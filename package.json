@@ -6,5 +6,8 @@
   "repository": "git@github.com:bayd3/block-camera.git",
   "author": "Micah Stubbs <micah.stubbs@gmail.com>",
   "license": "Apache-2.0",
-  "private": false
+  "private": false,
+  "dependencies": {
+    "csv-write-stream": "^2.0.0"
+  }
 }
