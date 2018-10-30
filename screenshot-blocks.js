@@ -14,7 +14,8 @@ const screenshotBlocks = async () => {
       // console.log('data', data)
       // console.log('data[0]', data[0])
 
-      const subset = data.slice(0, data.length - 200)
+      // most recent 4,000 examples
+      const subset = data.reverse().slice(0, 4000)
       console.log('subset', subset)
 
       const subsetOptions = subset.map(block =>
