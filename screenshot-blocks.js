@@ -1,7 +1,7 @@
 const fs = require('fs')
 const util = require('util')
 const d3 = require('d3-dsv')
-const screenshotBlock = require('./screenshot-block.js')
+const getScreenshotOptions = require('./get-screenshot-options.js')
 const fetch = require('node-fetch')
 const URL = require('url').URL
 
@@ -14,16 +14,27 @@ const screenshotBlocks = async () => {
       // console.log('data', data)
       // console.log('data[0]', data[0])
 
-      const subset = data.slice(data.length - 10, data.length)
+      const subset = data.slice(0, data.length - 200)
       console.log('subset', subset)
 
+      const subsetOptions = subset.map(block =>
+        getScreenshotOptions({ block, type: 'thumbnail' })
+      )
+
+      const body = {
+        data: subsetOptions
+      }
+
       const screenshotServerUrl = new URL('https://screenshot.micah.fyi/api')
-      fetch(screenshotServerUrl, {
+      const options = {
         method: 'POST',
-        body: JSON.stringify(subset),
+        body: JSON.stringify(body),
         headers: { 'Content-Type': 'application/json' }
-      }).then(res => console.log(res))
-      // .then(json => console.log(json))
+      }
+      fetch(screenshotServerUrl, options)
+        .then(res => res.text())
+        .then(text => console.log(text))
+        .catch(err => console.log(err))
     })
 }
 
