@@ -7,6 +7,10 @@
   "author": "Micah Stubbs <micah.stubbs@gmail.com>",
   "license": "Apache-2.0",
   "private": false,
+  "scripts": {
+    "data": "cp /Users/m/workspace/blockbuilder-search-index/data/parsed/blocks.json data/blocks.json",
+    "parse": "node parse-image-metadata.js"
+  },
   "dependencies": {
     "csv-write-stream": "^2.0.0",
     "d3-dsv": "^1.0.10",
