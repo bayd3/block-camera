@@ -29,7 +29,7 @@ async function parseBucketImageMetadata() {
     // a rough heuristic for
     // does the filename match this pattern
     // https-bl-ocks-org-00min00-raw-b24bdcd2719a99918cbce420af36eb2e-thumbnail.png
-    if (filenameParts.length === 8) {
+    if (filenameParts.length >= 8) {
       user = filenameParts[4]
       gistId = filenameParts[6]
       type = filenameParts[7]
