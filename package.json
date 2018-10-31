@@ -13,7 +13,8 @@
     "parse:gist": "node --max-old-space-size=8192 parse-gist-image-metadata.js",
     "list:bucket": "node list-files-in-bucket.js blockbuilder-screenshots",
     "combine": "node combine-lists.js",
-    "screenshot": "node screenshot-blocks.js"
+    "screenshot": "node screenshot-blocks.js",
+    "pipeline": "yarn list:bucket && yarn parse:bucket && yarn combine"
   },
   "dependencies": {
     "@google-cloud/storage": "^2.2.0",
