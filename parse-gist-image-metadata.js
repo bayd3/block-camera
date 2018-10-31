@@ -36,8 +36,8 @@ async function parseGistImageMetadata() {
     else noPreview.push(minBlock)
   })
 
-  writeCsv({ path: `${__dirname}/data/has-gist-thumb.csv`, data: hasThumb })
-  writeCsv({ path: `${__dirname}/data/has-gist-preview.csv`, data: hasPreview })
-  writeCsv({ path: `${__dirname}/data/no-gist-thumb.csv`, data: noThumb })
-  writeCsv({ path: `${__dirname}/data/no-gist-preview.csv`, data: noPreview })
+  writeCsv({ path: `${__dirname}/data/has-thumb-gist.csv`, data: hasThumb })
+  writeCsv({ path: `${__dirname}/data/has-preview-gist.csv`, data: hasPreview })
+  writeCsv({ path: `${__dirname}/data/no-thumb-gist.csv`, data: noThumb })
+  writeCsv({ path: `${__dirname}/data/no-preview-gist.csv`, data: noPreview })
 }

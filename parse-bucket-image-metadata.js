@@ -45,11 +45,11 @@ async function parseBucketImageMetadata() {
   })
 
   writeCsv({
-    path: `${__dirname}/data/has-bucket-thumb.csv`,
+    path: `${__dirname}/data/has-thumb-bucket.csv`,
     data: hasThumb
   })
   writeCsv({
-    path: `${__dirname}/data/has-bucket-preview.csv`,
+    path: `${__dirname}/data/has-preview-bucket.csv`,
     data: hasPreview
   })
 }

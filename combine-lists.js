@@ -7,10 +7,10 @@ async function combineLists() {
   const readFile = util.promisify(fs.readFile)
   let path
 
-  path = './data/no-gist-thumb.csv'
+  path = './data/no-thumb-gist.csv'
   const gistsNoThumb = d3.csvParse(await readFile(path, 'utf-8'))
 
-  path = './data/has-bucket-thumb.csv'
+  path = './data/has-thumb-bucket.csv'
   const bucketFilesWithThumb = d3.csvParse(await readFile(path, 'utf-8'))
 
   const data = []
