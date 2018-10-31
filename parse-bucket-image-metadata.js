@@ -24,15 +24,14 @@ async function parseBucketImageMetadata() {
   let type
   let minBlock
   files.forEach((file, i) => {
-    const filenameParts = file.name.split('-')
-
-    // a rough heuristic for
     // does the filename match this pattern
     // https-bl-ocks-org-00min00-raw-b24bdcd2719a99918cbce420af36eb2e-thumbnail.png
-    if (filenameParts.length >= 8) {
-      user = filenameParts[4]
-      gistId = filenameParts[6]
-      type = filenameParts[7]
+    const re = /(https-bl-ocks-org-)(.*)(-raw-)(.*)(-)(\w+\.png)/
+    const match = file.name.match(re)
+    if (match !== null) {
+      user = match[2]
+      gistId = match[4]
+      type = match[6]
 
       minBlock = { gistId, user }
 
