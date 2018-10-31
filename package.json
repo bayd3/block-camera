@@ -9,9 +9,11 @@
   "private": false,
   "scripts": {
     "data": "cp /Users/m/workspace/blockbuilder-search-index/data/parsed/blocks.json data/blocks.json",
-    "parse": "node parse-image-metadata.js"
+    "parse": "node parse-image-metadata.js",
+    "list:bucket": "node list-files-in-bucket.js blockbuilder-screenshots"
   },
   "dependencies": {
+    "@google-cloud/storage": "^2.2.0",
     "csv-write-stream": "^2.0.0",
     "d3-dsv": "^1.0.10",
     "node-fetch": "^2.2.0"
