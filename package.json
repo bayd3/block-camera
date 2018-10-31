@@ -9,8 +9,11 @@
   "private": false,
   "scripts": {
     "data": "cp /Users/m/workspace/blockbuilder-search-index/data/parsed/blocks.json data/blocks.json",
-    "parse": "node parse-image-metadata.js",
-    "list:bucket": "node list-files-in-bucket.js blockbuilder-screenshots"
+    "parse:bucket": "node --max-old-space-size=8192 parse-bucket-image-metadata.js",
+    "parse:gist": "node --max-old-space-size=8192 parse-gist-image-metadata.js",
+    "list:bucket": "node list-files-in-bucket.js blockbuilder-screenshots",
+    "combine": "node combine-lists.js",
+    "screenshot": "node screenshot-blocks.js"
   },
   "dependencies": {
     "@google-cloud/storage": "^2.2.0",
