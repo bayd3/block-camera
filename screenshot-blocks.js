@@ -5,38 +5,55 @@ const getScreenshotOptions = require('./get-screenshot-options.js')
 const fetch = require('node-fetch')
 const URL = require('url').URL
 
-const screenshotBlocks = async () => {
-  const path = `${__dirname}/data/no-thumb.csv`
-  const readFile = util.promisify(fs.readFile)
-  readFile(path, 'utf-8')
-    .then(file => d3.csvParse(file))
-    .then(data => {
-      // console.log('data', data)
-      // console.log('data[0]', data[0])
+const screenshotBlocks = async ({ path, data, start, batchSize }) => {
+  // const path = `${__dirname}/data/no-thumb.csv`
+  // const path = `${__dirname}/data/no-thumb-test.csv`
+  if (typeof data === 'undefined') {
+    const readFile = util.promisify(fs.readFile)
+    const dataString = await readFile(path, 'utf-8')
+    data = d3.csvParse(dataString)
+  }
 
-      // most recent first
-      const subset = data.reverse() // .slice(0, 1200)
-      console.log('subset', subset)
+  // console.log('data', data)
+  // console.log('data[0]', data[0])
 
-      const subsetOptions = subset.map(block =>
-        getScreenshotOptions({ block, type: 'thumbnail' })
-      )
+  const end = Math.min(start + batchSize, data.length)
 
-      const body = {
-        data: subsetOptions
+  // most recent first
+  const subset = data.reverse().slice(start, end)
+  console.log('subset', subset)
+
+  const subsetOptions = subset.map(block =>
+    getScreenshotOptions({ block, type: 'thumbnail' })
+  )
+
+  const body = {
+    data: subsetOptions
+  }
+
+  const screenshotServerUrl = new URL('https://screenshot.micah.fyi/api')
+  const options = {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: { 'Content-Type': 'application/json' }
+  }
+  fetch(screenshotServerUrl, options)
+    .then(res => res.text())
+    .then(text => {
+      console.log(text)
+      if (text == '201' && end < data.length) {
+        screenshotBlocks({
+          data,
+          start: end,
+          batchSize: 100
+        })
       }
-
-      const screenshotServerUrl = new URL('https://screenshot.micah.fyi/api')
-      const options = {
-        method: 'POST',
-        body: JSON.stringify(body),
-        headers: { 'Content-Type': 'application/json' }
-      }
-      fetch(screenshotServerUrl, options)
-        .then(res => res.text())
-        .then(text => console.log(text))
-        .catch(err => console.log(err))
     })
+    .catch(err => console.log(err))
 }
 
-screenshotBlocks()
+screenshotBlocks({
+  path: `${__dirname}/data/no-thumb.csv`,
+  start: 0,
+  batchSize: 100
+})
