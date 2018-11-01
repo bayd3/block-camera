@@ -45,7 +45,7 @@ const screenshotBlocks = async ({ path, data, start, batchSize }) => {
         screenshotBlocks({
           data,
           start: end,
-          batchSize: 100
+          batchSize
         })
       }
     })
@@ -55,5 +55,5 @@ const screenshotBlocks = async ({ path, data, start, batchSize }) => {
 screenshotBlocks({
   path: `${__dirname}/data/no-thumb.csv`,
   start: 0,
-  batchSize: 100
+  batchSize: 16
 })
